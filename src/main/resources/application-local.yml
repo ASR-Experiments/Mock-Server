@@ -1,24 +1,21 @@
 spring:
-  application:
-    name: Mock Server
   cloud:
     config:
-      enabled: false
-      import-check:
-        enabled: false
+      enabled: true
+    gateway:
+      routes:
+        - id: beeceptor
+          uri: https://arvinds-test.free.beeceptor.com
+          predicates:
+            - Path=/beeceptor/**
 
 management:
-  server:
-    port: 8090
   info:
     env:
       enabled: true
     git:
       enabled: true
       mode: full
-  endpoint:
-    gateway:
-      enabled: true
   endpoints:
     web:
       exposure:

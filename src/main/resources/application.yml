@@ -1,0 +1,18 @@
+spring:
+  application:
+    name: Mock Server
+  cloud:
+    config:
+      enabled: false
+
+management:
+  info:
+    env:
+      enabled: true
+    git:
+      enabled: true
+      mode: full
+  endpoints:
+    web:
+      exposure:
+        include: '*'

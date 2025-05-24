@@ -1,4 +1,13 @@
 spring:
+  h2.console:
+    # Required for h2-console server
+    enabled: true
+  datasource:
+    url: r2dbc:h2:file:./test_db;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE
+    driver-class-name: org.h2.Driver
+    username: sa
+    password: sa
+
   cloud:
     config:
       enabled: true
@@ -19,4 +28,4 @@ management:
   endpoints:
     web:
       exposure:
-        include: '*'
+        include: 'health,info,env,git,h2console'

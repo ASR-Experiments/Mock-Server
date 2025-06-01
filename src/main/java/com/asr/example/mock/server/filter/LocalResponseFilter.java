@@ -15,7 +15,6 @@ import org.springframework.cloud.gateway.support.ServerWebExchangeUtils;
 import org.springframework.core.Ordered;
 import org.springframework.core.io.buffer.DataBuffer;
 import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.server.PathContainer;
 import org.springframework.http.server.reactive.ServerHttpResponse;
@@ -127,7 +126,7 @@ public class LocalResponseFilter implements GlobalFilter, Ordered {
         response.getHeaders().set(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE);
         response.getHeaders().set(HttpHeaders.CONTENT_LENGTH, String.valueOf(responseBytes.length));
         response.getHeaders().set(HttpHeaders.CONTENT_ENCODING, StandardCharsets.UTF_8.displayName());
-        response.setStatusCode(HttpStatus.OK);
+        response.setStatusCode(proxyResponse.statusCode());
         // As app is reactive, we will wait for serialization to complete the response and return as is , rather than continuing the chain
         return response
             .writeWith(Mono.just(wrappedResponse))

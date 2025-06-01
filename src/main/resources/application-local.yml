@@ -1,4 +1,13 @@
 spring:
+  mvc:
+    problemdetails:
+      enabled: true
+  r2dbc:
+    initialization-mode: always
+  sql:
+    init:
+      schema-locations: classpath:schema.sql
+      mode: always
   h2.console:
     # Required for h2-console server
     enabled: true

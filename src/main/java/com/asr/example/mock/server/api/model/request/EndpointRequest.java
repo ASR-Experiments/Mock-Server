@@ -6,6 +6,7 @@ import lombok.Builder;
 @Builder
 public record EndpointRequest(
         @NotEmpty String endpoint,
-        @NotEmpty String method
+        @NotEmpty String method,
+        Boolean isActive
 ) {
 }

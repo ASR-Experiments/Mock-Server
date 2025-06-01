@@ -9,9 +9,11 @@ public record EndpointResponse(
         String endpoint,
         String method,
         String endpointId,
+        Boolean isActive,
         LocalDateTime createdAt,
         LocalDateTime updatedAt,
         String createdBy,
-        String updatedBy
+        String updatedBy,
+        Long version
 ) {
 }

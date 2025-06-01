@@ -1,19 +1,22 @@
 package com.asr.example.mock.server.api.model.response;
 
 import lombok.Builder;
+import org.springframework.http.HttpStatusCode;
 
-import java.math.BigInteger;
+import java.time.LocalDateTime;
+
 
 @Builder
 public record ResponseResponse(
-        String response,
-        String contentType,
-        Integer statusCode,
-        BigInteger responseId,
-        BigInteger endpointId,
+    String responseBody,
+    HttpStatusCode statusCode,
+    String responseHeaders,
+    Long responseId,
+    Long endpointId,
         String createdBy,
         String updatedBy,
-        Long createdAt,
-        Long updatedAt
+    LocalDateTime createdAt,
+    LocalDateTime updatedAt,
+    Long version
 ) {
 }

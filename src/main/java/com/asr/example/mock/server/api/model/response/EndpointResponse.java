@@ -8,7 +8,7 @@ import java.time.LocalDateTime;
 public record EndpointResponse(
         String endpoint,
         String method,
-        String endpointId,
+        Long endpointId,
         Boolean isActive,
         LocalDateTime createdAt,
         LocalDateTime updatedAt,

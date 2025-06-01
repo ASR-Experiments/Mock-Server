@@ -13,10 +13,12 @@ public record ResponseResponse(
     String responseHeaders,
     Long responseId,
     Long endpointId,
-        String createdBy,
-        String updatedBy,
+    Long priority,
+    String createdBy,
+    String updatedBy,
     LocalDateTime createdAt,
     LocalDateTime updatedAt,
     Long version
 ) {
+
 }

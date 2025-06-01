@@ -27,4 +27,6 @@ public interface ResponseRepository extends R2dbcRepository<ResponseEntity, Long
     Mono<Long> countByEndpointId(Long endpointId);
 
     Mono<Void> deleteByEndpointId(Long endpointId);
+
+    Mono<ResponseEntity> findFirstByEndpointIdAndIsActiveOrderByPriorityAsc(Long endpointId, boolean isActive);
 }

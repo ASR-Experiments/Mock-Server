@@ -60,6 +60,12 @@ public class ResponseServiceImpl implements ResponseService {
     }
 
     @Override
+    public Mono<ResponseResponse> getTopResponseForEndpoint(final Long endpointId) {
+        return responseRepository.findFirstByEndpointIdAndIsActiveOrderByPriorityAsc(endpointId, true)
+            .map(responseMapper::mapResponse);
+    }
+
+    @Override
     public Mono<ResponseWithEndpoint> getResponseWithEndpoint(Long responseId) {
         return responseRepository.findEndpointByResponseId(responseId);
     }

@@ -12,6 +12,8 @@ public interface ResponseService {
 
     Mono<ResponseResponse> getResponse(Long responseId);
 
+    Mono<ResponseResponse> getTopResponseForEndpoint(Long endpointId);
+
     Mono<ResponseWithEndpoint> getResponseWithEndpoint(Long responseId);
 
     Mono<PageData<ResponseResponse>> getAllResponsesForEndpoint(

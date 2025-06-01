@@ -11,6 +11,7 @@ public record ResponseRequest(
         String endpoint,
         String method,
         Long endpointId,
+        Long priority,
         @NotEmpty String body,
         String headers,
         @NotNull HttpStatusCode status

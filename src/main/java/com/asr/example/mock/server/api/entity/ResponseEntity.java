@@ -25,6 +25,7 @@ public class ResponseEntity implements Persistable<Long> {
     @Id
     Long responseId;
     Long endpointId;
+    Long priority;
     Boolean isActive;
     Integer httpStatus;
     String responseBody;

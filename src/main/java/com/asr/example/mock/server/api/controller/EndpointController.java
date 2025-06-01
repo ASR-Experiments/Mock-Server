@@ -37,8 +37,8 @@ public class EndpointController {
     }
 
     @GetMapping
-    public Mono<ResponseEntity<EndpointResponse>> getEndpoint(@RequestParam Long id) {
-        return endpointService.getEndpoint(id)
+    public Mono<ResponseEntity<EndpointResponse>> getEndpoint(@RequestParam Long id, @RequestParam(required = false) Boolean isActive) {
+        return endpointService.getEndpoint(id, isActive)
             .doOnSuccess(entity -> {
                 if (entity != null) log.info("Retrieved endpoint: {}", entity.endpointId());
             })
@@ -49,8 +49,9 @@ public class EndpointController {
 
     @PostMapping("/query")
     public Mono<ResponseEntity<EndpointResponse>> getEndpointByMethodAndPath(
-        @Valid @RequestBody EndpointRequest request) {
-        return endpointService.getEndpointByMethodAndPath(request)
+        @Valid @RequestBody EndpointRequest request,
+        @RequestParam(required = false) Boolean isActive) {
+        return endpointService.getEndpointByMethodAndPath(request, isActive)
             .doOnSuccess(entity -> {
                 if (entity != null) log.info("Retrieved endpoint: {}", entity.endpointId());
             })
@@ -60,7 +61,7 @@ public class EndpointController {
     }
 
     @PatchMapping
-    public Mono<ResponseEntity<EndpointResponse>> updateEndpoint(@Valid @RequestBody EndpointRequest request,
+    public Mono<ResponseEntity<EndpointResponse>> updateEndpoint(@RequestBody EndpointRequest request,
                                                                  @RequestParam Long id) {
         return endpointService.updateEndpoint(request, id)
             .doOnSuccess(entity -> log.info("Endpoint updated: {}", entity))

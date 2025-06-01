@@ -28,14 +28,19 @@ public class EndpointServiceImpl implements EndpointService {
     }
 
     @Override
-    public Mono<EndpointResponse> getEndpoint(Long id) {
-        return endpointRepository.findById(id)
+    public Mono<EndpointResponse> getEndpoint(Long id, final Boolean isActive) {
+        return (isActive == null
+            ? endpointRepository.findById(id)
+            : endpointRepository.findByIdAndIsActive(id, isActive))
             .map(endpointMapper::mapResponse);
     }
 
     @Override
-    public Mono<EndpointResponse> getEndpointByMethodAndPath(EndpointRequest request) {
-        return endpointRepository.findByMethodAndEndpoint(request.method(), request.endpoint())
+    public Mono<EndpointResponse> getEndpointByMethodAndPath(EndpointRequest request, final Boolean isActive) {
+        return (isActive == null
+            ? endpointRepository.findByMethodAndEndpoint(request.method(), request.endpoint())
+            : endpointRepository.findByMethodAndEndpointAndIsActive(request.method(), request.endpoint(), isActive)
+        )
             .map(endpointMapper::mapResponse);
     }
 
